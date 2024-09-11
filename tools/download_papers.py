@@ -1,13 +1,10 @@
 '''
 Author: Qigqi
-Date: 2024-07-31 08:43:22
-LastEditors: Qigqi
-LastEditTime: 2024-07-31 08:46:44
-FilePath: /tools/down_papers.py
-Description: 下载源文件
-
+LastEditors: lydonShen lyden_shen@sina.com
+FilePath: /tools/download_papers.py
 Copyright (c) 2024 by Qigqi, All Rights Reserved. 
 '''
+
 # -*- coding: utf-8 -*-
 import csv
 import os
@@ -44,6 +41,7 @@ def get_response_from_url(url, timeout=25, proxies = '', features='html.parser')
         'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_3) AppleWebKit/535.20 (KHTML, like Gecko) Chrome/19.0.1036.7 Safari/535.20',
         'Opera/9.80 (Macintosh; Intel Mac OS X 10.6.8; U; fr) Presto/2.9.168 Version/11.52'
     ]
+    
     session = requests.Session()
     session.mount('http://', HTTPAdapter(max_retries=5))
     session.mount('https://', HTTPAdapter(max_retries=5))

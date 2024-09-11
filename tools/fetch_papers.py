@@ -1,13 +1,10 @@
 '''
 Author: Qigqi
-Date: 2024-07-31 08:58:02
-LastEditors: Qigqi
-LastEditTime: 2024-07-31 09:01:24
 FilePath: /tools/fetch_papers.py
-Description: 爬取各种会议的article title
-
+Description: get article title
 Copyright (c) 2024 by Qigqi, All Rights Reserved. 
 '''
+
 # -*- coding: utf-8 -*-
 import requests
 from bs4 import BeautifulSoup

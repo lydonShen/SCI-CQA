@@ -1,13 +1,11 @@
 '''
 Author: Qigqi
-Date: 2024-07-31 08:58:02
 LastEditors: Qigqi
-LastEditTime: 2024-07-31 08:59:43
 FilePath: /tools/get_arxiv_links.py
-Description: 通过title查找arXiv的源文件url
-
+Description: Find arXiv url
 Copyright (c) 2024 by Qigqi, All Rights Reserved. 
 '''
+
 # -*- coding: utf-8 -*-
 import csv
 from tqdm import tqdm
