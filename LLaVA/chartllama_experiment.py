@@ -3,6 +3,7 @@
 # author:qgq
 # time:2024.07.25
 ##############################
+
 import argparse
 import torch
 import os
@@ -15,19 +16,14 @@ import time
 from transformers import AutoTokenizer, AutoModelForCausalLM, AutoConfig, BitsAndBytesConfig
 from llava.constants import IMAGE_TOKEN_INDEX, DEFAULT_IMAGE_TOKEN, DEFAULT_IM_START_TOKEN, DEFAULT_IM_END_TOKEN, DEFAULT_IMAGE_PATCH_TOKEN
 from llava.conversation import conv_templates, SeparatorStyle
-# from llava.model.builder import load_pretrained_model
 from llava.model import *
 from llava.utils import disable_torch_init
 from llava.mm_utils import tokenizer_image_token, process_images, get_model_name_from_path
 from torch.utils.data import Dataset, DataLoader
-
 from PIL import Image
 import math
 
 def load_json_file(json_path):
-    """
-    读取json文件
-    """
     with open(json_path, encoding='utf-8') as json_file:
         json_strs = json.load(json_file)
     return json_strs
@@ -53,8 +49,9 @@ def load_pretrained_model(model_path, model_base, model_name, load_8bit=False, l
         )
     else:
         kwargs['torch_dtype'] = torch.float16
-    # ("--model-path", type=str, default='/home/data_sld/chartllama_lora')
-    # ("--model-base", type=str, default='/home/data_sld/llava_v1.5-13B')
+    # ("--model-path", type=str, default='./chartllama_lora')
+    # ("--model-base", type=str, default='./llava_v1.5-13B')
+    
     # Load LLaVA model
     if model_base is None:
         raise ValueError('There is `lora` in model name but no `model_base` is provided. If you are loading a LoRA model, please provide the `model_base` argument. Detailed instruction: https://github.com/haotian-liu/LLaVA#launch-a-model-worker-lora-weights-unmerged.')
@@ -139,6 +136,7 @@ class CustomDataset(Dataset):
         self.question_prompt = question_prompt
 
     def __getitem__(self, index):
+        
     #     question = """
     #     You will receive a multiple-choice question related to a chart presented in the input image. The question will have four options, only one of which is correct. It's a closed question, please output only the correct option without providing any additional explanation or information.
     #     For example: 	
@@ -157,22 +155,27 @@ class CustomDataset(Dataset):
         question_type = line["type"]
 
         qs = line["conversations"][0]['value'].replace(DEFAULT_IMAGE_TOKEN, '').strip()
+        
         # if question_type == "Multiple-Choice Questions":
-        #     qs = question + ("Question and options:" + qs) #选择题时使用这个
+        #     qs = question + ("Question and options:" + qs) 
         # else:
         #     qs = question + ("Question:" + qs)
+        
         qs = question + qs
         # print(qs)
+        
         if self.model_config.mm_use_im_start_end:
             qs = DEFAULT_IM_START_TOKEN + DEFAULT_IMAGE_TOKEN + DEFAULT_IM_END_TOKEN + '\n' + qs
         else:
             qs = DEFAULT_IMAGE_TOKEN + '\n' + qs
         # print(qs)
+        
         conv = conv_templates[args.conv_mode].copy()
         conv.append_message(conv.roles[0], qs)
         conv.append_message(conv.roles[1], None)
         prompt = conv.get_prompt()
         # print(prompt)
+        
         image_path = os.path.join(self.image_folder, image_file)
         if os.path.exists(image_path):
             image = Image.open(image_path).convert('RGB')
@@ -203,19 +206,20 @@ def eval_model(args):
     # data_type = args.data_type
     data_type = input("Pleace input datatype!<<<<<<<<< flow or datachart or datachart_flow>>>>>>>>>>>>")
     
-    answer_files_folder = f'/home/data_sld/chart/result_of_test'
+    answer_files_folder = f'./chart/result_of_test'
     question_prompt_json = load_json_file(args.question_prompt)
     model_name = args.model_path.split('/')[-1]
     os.makedirs(answer_files_folder, exist_ok=True)
+    
     if data_type == "datachart":
-        image_folder = "/home/data_sld/chart/test/d_test_images"
-        json_files_folder = "/home/data_sld/chart/test/d_test"
+        image_folder = "./chart/test/d_test_images"
+        json_files_folder = "./chart/test/d_test"
     elif data_type =="flow":
-        image_folder = "/home/data_sld/chart/test/f_test_images"
-        json_files_folder = "/home/data_sld/chart/test/f_test"
+        image_folder = "./chart/test/f_test_images"
+        json_files_folder = "./chart/test/f_test"
     elif data_type =="datachart_flow":
-        image_folder = "/home/data_sld/chart/test/df_test_images"
-        json_files_folder = "/home/data_sld/chart/test/df_test"
+        image_folder = "./chart/test/df_test_images"
+        json_files_folder = "./chart/test/df_test"
     else:
         return
     
@@ -251,6 +255,7 @@ def eval_model(args):
     if 'plain' in model_name and 'finetune' not in model_name.lower() and 'mmtag' not in args.conv_mode:
         args.conv_mode = args.conv_mode + '_mmtag'
         print(f'It seems that this is a plain model, but it is not using a mmtag prompt, auto switching to {args.conv_mode}.')
+   
     # question_prompt = load_json_file(args.question_prompt)[2]['open_end_question_prompt']
     data_loader = create_data_loader(questions, image_folder, tokenizer, image_processor, model.config, question_prompt)
     start_time = time.time()
@@ -311,10 +316,10 @@ def eval_model(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model-path", type=str, default='/home/data_sld/chartllama_lora')
-    parser.add_argument("--model-base", type=str, default='/home/data_sld/llava_v1.5-13B')
+    parser.add_argument("--model-path", type=str, default='./chartllama_lora')
+    parser.add_argument("--model-base", type=str, default='./llava_v1.5-13B')
     parser.add_argument("--experiment_name", type=str, default="open_end")
-    parser.add_argument("--question_prompt", type=str, default="/home/data_sld/chart/chart_classification_caption_jsons/questions_prompt.json")
+    parser.add_argument("--question_prompt", type=str, default="./chart/chart_classification_caption_jsons/questions_prompt.json")
     parser.add_argument("--conv-mode", type=str, default="v1")
     parser.add_argument("--num-chunks", type=int, default=1)
     parser.add_argument("--chunk-idx", type=int, default=0)
@@ -325,8 +330,8 @@ if __name__ == "__main__":
 
     eval_model(args)
 
-# CUDA_VISIBLE_DEVICES=1 python -m llava.eval.model_vqa_lora --model-path /home/data_sld/chartllama_lora \
-#     --question-file /home/data_sld/chart/multi-choice.json \
+# CUDA_VISIBLE_DEVICES=1 python -m llava.eval.model_vqa_lora --model-path ./chartllama_lora \
+#     --question-file ./chart/multi-choice.json \
 #     --image-folder /data/datasets/chart/chartdata/chartimg \
 #     --answers-file answer.jsonl \
 #     --num-chunks $CHUNKS \

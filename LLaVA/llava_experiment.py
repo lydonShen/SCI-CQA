@@ -1,8 +1,9 @@
 ##############################
-# task:Multi-Choice Question
+# task: Multi-Choice Question
 # author:sld
 # time:2024.06.20
 ##############################
+
 import argparse
 import torch
 import os
@@ -10,30 +11,24 @@ import json
 from tqdm import tqdm
 import shortuuid
 import time
-
 from llava.constants import IMAGE_TOKEN_INDEX, DEFAULT_IMAGE_TOKEN, DEFAULT_IM_START_TOKEN, DEFAULT_IM_END_TOKEN
 from llava.conversation import conv_templates, SeparatorStyle
 from llava.model.builder import load_pretrained_model
 from llava.utils import disable_torch_init
 from llava.mm_utils import tokenizer_image_token, get_model_name_from_path, KeywordsStoppingCriteria
-
 from PIL import Image
 import math
 # from ChatTranslate import translate
 
 def load_json_file(json_path):
-
     with open(json_path, encoding='utf-8') as json_file:
         json_strs = json.load(json_file)
     return json_strs
 
-
 def extract_from_json_result(json_result):
-    
     question_type = json_result['type']
     image_path = json_result['image_path']
     conversations = json_result['conversations']
-
     return question_type, image_path, conversations
 
 def write_json(dict, output_files):
@@ -43,19 +38,18 @@ def write_json(dict, output_files):
     print(f'File {output_files} is wrote done.')
 
 def eval_model(args):
-    # Model
     cuda_ids = "0, 1, 2, 3"
     os.environ['CUDA_VISIBLE_DEVICES'] = cuda_ids
     data_type = input("Pleace input datatype!<<<<<<<<< flow or datachart>>>>>>>>>>>>")
-    json_files_folder = '/home/data_sld/chart/evl_questions'
-    answer_files_folder = f'/home/data_sld/chart/result_of_humancheck_evl'
+    json_files_folder = './chart/evl_questions'
+    answer_files_folder = f'./chart/result_of_humancheck_evl'
     question_prompt_json = load_json_file(args.question_prompt)
     model_name = args.model_path.split('/')[-1]
 
     if data_type == "datachart":
-        image_folder = "/home/data_sld/datachart_v2_human_check"
+        image_folder = "./datachart_v2_human_check"
     elif data_type =="flow":
-        image_folder = "/home/data_sld/flowchart_V1_human_check"
+        image_folder = "./flowchart_V1_human_check"
     else:
         print("Input right datatype!")
         return
@@ -130,7 +124,6 @@ def eval_model(args):
             image_tensor = image_processor.preprocess(image, return_tensors='pt')['pixel_values'][0]
         except OSError as e:
             print(f"Error loading image: {e}")
-            # 继续处理下一个图像
             continue
 
         stop_str = conv.sep if conv.sep_style != SeparatorStyle.TWO else conv.sep2
@@ -161,8 +154,8 @@ def eval_model(args):
                 break
             if n > 20:
                 break
-
         print(outputs)
+         
         mc_qa_dict.append({
                 "type": question_type,
                 "image_path": image_filename,
@@ -187,15 +180,15 @@ def eval_model(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model-path", type=str, default="/home/data_sld/llava_v1.6-13B")
+    parser.add_argument("--model-path", type=str, default="./llava_v1.6-13B")
     parser.add_argument("--model-base", type=str, default=None)
-    parser.add_argument("--image_folder", type=str, default="/data/datasets/chart/chartdata/chartimg")
+    parser.add_argument("--image_folder", type=str, default="./charts/chartdata/chartimg")
     parser.add_argument("--ori-file", type=str, default="None")
     parser.add_argument("--conv-mode", type=str, default="llava_v1")
-    parser.add_argument("--question_prompt", type=str, default="/home/data_sld/chart/chart_classification_caption_jsons/questions_prompt.json")
-    parser.add_argument("--json_path",type=str, default="/home/data_sld/chart/open_end.json")
+    parser.add_argument("--question_prompt", type=str, default="./chart/chart_classification_caption_jsons/questions_prompt.json")
+    parser.add_argument("--json_path",type=str, default="./chart/open_end.json")
     parser.add_argument("--experiment_name", type=str, default="open_end")
-    parser.add_argument("--output_json_path",type=str, default="/home/data_sld/chart/result_of_experiments/open_end_by_llava_v1.6-13B.json")
+    parser.add_argument("--output_json_path",type=str, default="./chart/result_of_experiments/open_end_by_llava_v1.6-13B.json")
     parser.add_argument("--num-chunks", type=int, default=1)
     parser.add_argument("--chunk-idx", type=int, default=0)
     parser.add_argument("--temperature", type=float, default=0.7)
@@ -203,4 +196,4 @@ if __name__ == "__main__":
     parser.add_argument("--num_beams", type=int, default=1)
     parser.add_argument("--save_json", type=bool, help="save json", default=True)
     args = parser.parse_args()
-    eval_model(args)
+    eval_model(args) 
