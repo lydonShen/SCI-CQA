@@ -15,7 +15,6 @@
 <p align="center">
     <img src="assets/overview.png"  style="margin-bottom: 0.2;"/>
 <p>
-
 SCI-CQA address the limitations of current benchmarks and provide a more robust framework for evaluating the chart understanding abilities of multimodal models in scientific literature contexts.
 
 - ✨ SCI-CQA highlights flowcharts, a crucial yet often overlooked chart type in scientific literature, addressing the gap in existing benchmarks that primarily focus on simpler chart types.
@@ -27,6 +26,17 @@ SCI-CQA address the limitations of current benchmarks and provide a more robust 
 
 
 # 📈 Dataset 
+### The following figure consists of a randomly selected set of flowcharts. 
+From this picture, it can be seen that the flowchart in the scientific literature proposed by SCI-CQA has complex visual patterns and rich visual features.
+<p align="center">
+    <img src="assets/flowchart.png"  style="margin-bottom: 0.2;"/>
+<p>
+    
+### The following figure consists of a randomly selected set of data charts. 
+This figure shows the data complexity and visual richness of SCI-CQA. The charts produced by humans are often beautiful and with complex data distribute, which is very different from the synthesized data.    
+<p align="center">
+    <img src="assets/datachart.png"  style="margin-bottom: 0.2;"/>
+<p>
 
 SCI-CQA will be released in this Link 🔗 [SCI-CQA](https://huggingface.co/datasets/lyndons1/SCI-CQA). 
 
