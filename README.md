@@ -17,13 +17,9 @@
 <p>
 SCI-CQA address the limitations of current benchmarks and provide a more robust framework for evaluating the chart understanding abilities of multimodal models in scientific literature contexts.
 
-- ✨ SCI-CQA highlights flowcharts, a crucial yet often overlooked chart type in scientific literature, addressing the gap in existing benchmarks that primarily focus on simpler chart types.
-- ✨ By using real-world scientific charts with intricate visual elements, SCI-CQA offers a more accurate assessment of multimodal models, addressing the shortcomings of existing benchmarks that rely on overly simplistic elements.
-- ✨ SCI-CQA introduces an evaluation framework inspired by human exams, featuring 5,629 carefully curated questions that include both objective and open-ended formats, enhancing the assessment of model understanding beyond simplistic templates.
-- ✨ The benchmark emphasizes the importance of contextual information in chart understanding, demonstrating how context can help answer previously unanswerable questions, thereby setting a new standard for evaluating multimodal models.
-- ✨ A new annotation pipeline is proposed that significantly reduces the costs associated with data annotation, making the process more efficient and scalable.
-
-
+- ✨ SCI-CQA highlights **flowcharts**, a crucial yet often overlooked chart type in scientific literature.
+- ✨ By using **real-world scientific charts** with intricate visual elements, addressing the shortcomings of existing benchmarks that rely on overly simplistic visual elements.
+- ✨ SCI-CQA introduces an evaluation framework inspired by human exams, featuring **5,629** carefully curated questions that include both **objective and open-ended formats**.
 
 # 📈 Dataset 
 ### The following figure consists of a randomly selected set of flowcharts. 
