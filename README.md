@@ -34,7 +34,9 @@ This figure shows the data complexity and visual richness of SCI-CQA. The charts
     <img src="assets/datachart.png"  style="margin-bottom: 0.2;"/>
 <p>
 
-SCI-CQA will be released in this Link 🔗 [SCI-CQA](https://huggingface.co/datasets/lyndons1/SCI-CQA). 
+SCI-CQA will be released in this Link 🔗 [SCI-CQA](Coming Soon). 
+
+Since we are going to hold a competition using SCI-CQA, the data will be released after the competition.
 
 In addition, we create a **large training dataset of chart understanding**, which will be published soon.
 
