@@ -101,5 +101,10 @@ SCI-CQA is inspired by previous excellent works, and we are standing on the shou
 If you find our paper and code useful in your research, please consider giving a star or citation.
 
 ```BibTeX
-
+@misc{scicqa,
+      title={Rethinking Comprehensive Benchmark for Chart Understanding: A Perspective from Scientific Literature}, 
+      author={Shen, Lingdong and Qigqi and Ding, Kun and Meng, Gaofeng and Xiang, Shiming },
+      publisher={arXiv:2412.12150},
+      year={2024},
+}
 ```
