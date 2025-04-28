@@ -6,7 +6,7 @@
 <h5 align="center"> If you like our project, please give us a star ⭐ on GitHub for latest update. 
 
 ## 📰 News
-- 24-09-05. We release the test set and validation set of SCI-CQA, which can be downloaded at HF.
+- 24-09-05. We release the test set of SCI-CQA, which can be downloaded at HF.
 
 
 
@@ -34,13 +34,7 @@ This figure shows the data complexity and visual richness of SCI-CQA. The charts
     <img src="assets/datachart.png"  style="margin-bottom: 0.2;"/>
 <p>
 
-SCI-CQA will be released in this Link 🔗 [SCI-CQA](Coming Soon). 
-
-Since we are going to hold a competition using SCI-CQA, the data will be released after the competition.
-
-In addition, we create a **large training dataset of chart understanding**, which will be published soon.
-
-
+SCI-CQA will be released in this Link 🔗[SCI-CQA](https://huggingface.co/datasets/lyndons1/SCI-CQA). 
 
 # ⚙️ Evaluation
 ### Testing the open source model（Use LLaVA as an example）
