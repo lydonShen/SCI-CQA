@@ -33,3 +33,4 @@ ckpts*
 
 # Demo
 serve_images/
+.ms_upload_cache
