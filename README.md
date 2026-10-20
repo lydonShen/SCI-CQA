@@ -1,13 +1,11 @@
-<!-- The official repository of the paper named 'Rethinking Comprehensive Benchmark for Chart Understanding: A Perspective from Scientific Literature' -->
+<!-- The official repository of the paper 'Advancing Scientific Chart Understanding: The SCI-CQA Benchmark and Beyond' (IEEE TIP 2026) -->
 
-#  Rethinking Comprehensive Benchmark for Chart Understanding: A Perspective from Scientific Literature
-
-🎉 **The extended journal version of this work is published in IEEE Transactions on Image Processing (Vol. 35, pp. 10829–10841, 2026)**: *[Advancing Scientific Chart Understanding: The SCI-CQA Benchmark and Beyond](https://ieeexplore.ieee.org/document/11715981)*
+#  Advancing Scientific Chart Understanding: The SCI-CQA Benchmark and Beyond
 
 <h5 align="center"> If you like our project, please give us a star ⭐ on GitHub for latest update. 
 
 ## 📰 News
-- 26-10-20. 🎉 The journal version is published in **IEEE TIP** ([IEEE Xplore](https://ieeexplore.ieee.org/document/11715981), DOI: 10.1109/TIP.2026.3725719).
+- 26-10-20. 🎉 The paper is published in **IEEE Transactions on Image Processing**, Vol. 35, pp. 10829–10841 ([IEEE Xplore](https://ieeexplore.ieee.org/document/11715981), DOI: 10.1109/TIP.2026.3725719).
 - 26-10-20. We release the **519K-record image-context-caption corpus** on [ModelScope](https://modelscope.cn/datasets/lyndons/SCI-CQA-Datasets), along with a self-contained offline demo viewer (see below).
 - 24-09-05. We release the test set of SCI-CQA, which can be downloaded at HF.
 
@@ -129,4 +127,4 @@ If you find our paper and code useful in your research, please consider giving a
 }
 ```
 
-Paper: [IEEE Xplore](https://ieeexplore.ieee.org/document/11715981) · Preprint: [arXiv:2412.12150](https://arxiv.org/abs/2412.12150)
+Paper: [IEEE Xplore](https://ieeexplore.ieee.org/document/11715981)
