@@ -62,6 +62,8 @@ The [`viewer/`](viewer) folder contains a self-contained offline viewer for a 15
 
 **chartllama_experiment.py** and **llava_experiment.py** in the LLaVA folder give sample scripts for testing the open source model, which you can follow to adapt to your model.
 
+> **Note (Oct 2026):** the dependency pins in `LLaVA/pyproject.toml` were raised for security fixes (torch 2.6.0 / transformers 4.53.0 / gradio 4.44.0, etc.). The original experiments were run with torch 2.1.2 / transformers 4.37.2; if you need bit-exact reproduction, use those earlier versions in an isolated environment.
+
     CUDA_VISIBLE_DEVICES=1 python -m llava.eval.model_vqa_lora --model-path /home/data_sld/chartllama_lora \
       --question-file ./data/multi-choice.json \
       --image-folder ./images/charts/ \
